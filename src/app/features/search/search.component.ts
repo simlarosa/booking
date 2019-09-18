@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class SearchComponent {
   text = 'Milano';
   hotels: Hotel[];
+  active: Hotel;
+  activeImage: string;
 
   constructor(private http: HttpClient) { 
     this.searchHotels(this.text);
@@ -23,7 +25,22 @@ export class SearchComponent {
     this.http.get<Hotel[]>('http://localhost:3000/hotels?q=' + text)
     .subscribe(result => {
       this.hotels = result;
+      //this.active = this.hotels[0];
+      this.setActive(this.hotels[0]);
     });
+  }
+
+  setActive(hotel: Hotel) {
+    this.active = hotel;
+    this.activeImage = hotel.images[0];
+  }
+
+  sendEmail({email, msg}) {
+    window.alert(`sent: 
+    ${email}
+    ${msg}
+    ${this.active.email}
+    `);
   }
 
 }

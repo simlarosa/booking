@@ -8,13 +8,15 @@ import { LoginComponent } from './features/login/login.component';
 import { CartComponent } from './features/cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { IntToArrayPipe } from './shared/pipes/int-to-array.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    IntToArrayPipe
   ],
   imports: [
     BrowserModule,

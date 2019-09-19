@@ -1,4 +1,5 @@
-import { Hotel } from './../../model/hotel';
+import { CartService } from './../../../core/services/cart.service';
+import { Hotel, Room } from './../../model/hotel';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -14,18 +15,21 @@ export class SearchComponent {
   active: Hotel;
   activeImage: string;
 
-  constructor(private http: HttpClient) { 
+  constructor(
+    private http: HttpClient,
+    private cart: CartService
+    ) {
     this.searchHotels(this.text);
   }
 
-  
+
 
   searchHotels(text: string) {
     this.text = text;
     this.http.get<Hotel[]>('http://localhost:3000/hotels?q=' + text)
     .subscribe(result => {
       this.hotels = result;
-      //this.active = this.hotels[0];
+      // this.active = this.hotels[0];
       this.setActive(this.hotels[0]);
     });
   }
@@ -36,11 +40,15 @@ export class SearchComponent {
   }
 
   sendEmail({email, msg}) {
-    window.alert(`sent: 
+    window.alert(`sent:
     ${email}
     ${msg}
     ${this.active.email}
     `);
+  }
+
+  addToCart(room: Room, active: Hotel) {
+    this.cart.addToCart(active, room);
   }
 
 }

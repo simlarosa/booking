@@ -16,8 +16,8 @@ export class CartService {
         this.items = [
             ...this.items,
         {
-            hotel: hotel,
-            room: room,
+            hotel,
+            room,
             creationDate: Date.now()
         }
       ];

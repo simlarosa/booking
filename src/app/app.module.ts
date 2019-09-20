@@ -8,7 +8,10 @@ import { LoginComponent } from './features/login/login.component';
 import { CartComponent } from './features/cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { IntToArrayPipe } from './shared/pipes/int-to-array.pipe';
+import { IntToArrayPipe } from './features/shared/pipes/int-to-array.pipe';
+import { HotelListComponent } from './features/search/components/hotel-list/hotel-list.component';
+import { HotelFormComponent } from './features/search/components/hotel-form/hotel-form.component';
+import { SeparatorComponent } from './features/shared/components/separator/separator.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { IntToArrayPipe } from './shared/pipes/int-to-array.pipe';
     SearchComponent,
     LoginComponent,
     CartComponent,
-    IntToArrayPipe
+    IntToArrayPipe,
+    HotelListComponent,
+    HotelFormComponent,
+    SeparatorComponent
   ],
   imports: [
     BrowserModule,

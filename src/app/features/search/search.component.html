@@ -4,34 +4,18 @@
   <div class="card side-bar scrollable">
     <div class="title">Search</div>
     <div class="content">
-      <form #f="ngForm" (submit)="searchHotels(f.value.text)">
-        <input
-          type="text"
-          placeholder="City (Rome or Milan)"
-          [ngModel]="text"
-          name="text"
-        />
-        <button type="submit">SEARCH</button>
-      </form>
+      
+      <app-hotel-form [text]="text" (search)="searchHotels($event)"></app-hotel-form>
+     
+      <app-separator></app-separator>
 
-      <div class="separator"></div>
-      <div class="font-big">Hotel in {{ text }}</div>
+      <app-hotel-list
+        [hotels]="hotels"
+        [text]="text"
+        [active]="active"
+        (setActive)="setActive($event)"
+      ></app-hotel-list>
 
-      <div
-        class="horiz-grid separator"
-        *ngFor="let hotel of hotels"
-        (click)="setActive(hotel)"
-        [ngClass]="{ active: hotel.id === active?.id }"
-      >
-        <div>{{ hotel.name }}</div>
-        <div>da {{ hotel.rooms[0].price }}</div>
-      </div>
-
-      <div class="separator"></div>
-      <div class="horiz-grid">
-        <div></div>
-        <em>{{ hotels?.length }} results</em>
-      </div>
     </div>
   </div>
 
@@ -57,7 +41,7 @@
     <div class="content center">
       <!--<img src="https://picsum.photos/400/200/?image=12" width="100%" height="200">-->
 
-      <div class="separator"></div>
+      <app-separator></app-separator>
       <div class="font-superbig">
         {{ active?.rate }}
         <i class="ion-ios-person"></i>
